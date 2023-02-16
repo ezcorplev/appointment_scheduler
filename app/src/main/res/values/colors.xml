@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="mint_10">#01322a</color>
+    <color name="mint_20">#026454</color>
+    <color name="mint_30">#03967d</color>
+    <color name="mint_40">#04c8a7</color>
+    <color name="mint_80">#9bfded</color>
+    <color name="mint_90">#cdfef6</color>
+
+    <color name="blue_10">#001333</color>
+    <color name="blue_20">#002566</color>
+    <color name="blue_30">#003899</color>
+    <color name="blue_40">#004bcc</color>
+    <color name="blue_80">#99beff</color>
+    <color name="blue_90">#ccdfff</color>
+
+    <color name="orange_10">#332600</color>
+    <color name="orange_20">#664d00</color>
+    <color name="orange_30">#997300</color>
+    <color name="orange_40">#cc9900</color>
+    <color name="orange_80">#ffe699</color>
+    <color name="orange_90">#fff2cc</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+
+
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

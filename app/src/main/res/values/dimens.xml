@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="corner_radius">12dp</dimen>
+    <dimen name="card_height">150dp</dimen>
+    <dimen name="common_padding">16dp</dimen>
+    <dimen name="card_elevation">12dp</dimen>
+    <dimen name="image_margin">8dp</dimen>
+    <dimen name="loading_bar_dimen">34dp</dimen>
+    <dimen name="app_date_horizontal_margin">12dp</dimen>
+    <dimen name="application_text_size_xl">24sp</dimen>
+    <dimen name="application_text_size_l">16sp</dimen>
+    <dimen name="application_text_size_m">12sp</dimen>
+    <dimen name="application_text_size_s">8sp</dimen>
+    <dimen name="gen_button_width">68dp</dimen>
+    <dimen name="gen_button_horizontal_margin">8dp</dimen>
+    <dimen name="fav_button_dimen">24dp</dimen>
+    <dimen name="fav_button_margin">6dp</dimen>
+    <dimen name="icon_size">18dp</dimen>
+    <dimen name="gen_button_height">34dp</dimen>
+
+</resources>

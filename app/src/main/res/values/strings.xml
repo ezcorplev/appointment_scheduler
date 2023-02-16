@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AppointmentSchedulerApp</string>
+    <string name="floating_button_text">Add New Appointment</string>
+    <string name="create_a_new_meeting">Create a New Meeting</string>
+    <string name="edit_your_meeting">Edit Your Meeting</string>
+    <string name="appointment_desc_hint">Enter your appointment description here...</string>
+    <string name="confirm_appointment">Confirm Appointment</string>
+
+
+</resources>

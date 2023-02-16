@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AddOrEditAppointmentActivity">
+
+    <TextView
+        android:id="@+id/addOrEditTitleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/app_date_horizontal_margin"
+        android:layout_marginVertical="@dimen/app_date_horizontal_margin"
+        android:text="@string/create_a_new_meeting"
+        android:textSize="@dimen/application_text_size_xl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/confirm_appointment_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addOrEditTitleTV"
+
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <DatePicker
+                android:id="@+id/appointmentDateDP"
+                android:layout_width="0dp"
+                android:headerBackground="@color/mint_30"
+                android:background="@color/blue_90"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/app_date_horizontal_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TimePicker
+                android:id="@+id/appointmentTimeTP"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/app_date_horizontal_margin"
+                android:timePickerMode="spinner"
+                android:background="@color/blue_90"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/appointmentDateDP" />
+
+
+            <EditText
+                android:id="@+id/AppointmentDescriptionET"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/app_date_horizontal_margin"
+                android:layout_marginVertical="@dimen/app_date_horizontal_margin"
+                android:hint="@string/appointment_desc_hint"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/appointmentTimeTP" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/confirm_appointment_btn"
+        android:text="@string/confirm_appointment"
+        style="@style/Widget.Material3.Button.Icon"
+        android:layout_width="0dp"
+        android:textSize="@dimen/application_text_size_xl"
+        android:backgroundTint="@color/blue_40"
+        android:layout_height="50dp"
+        app:icon="@drawable/ic_baseline_calendar_today_24"
+        android:layout_margin="@dimen/gen_button_horizontal_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:iconGravity="textStart"
+        app:iconSize="@dimen/icon_size"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
