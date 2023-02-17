@@ -16,10 +16,10 @@
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/corner_radius"
         app:cardElevation="@dimen/card_elevation"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -37,7 +37,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerRound"
-                tools:src="@tools:sample/backgrounds/scenic[101]" />
+                tools:src="@raw/sf" />
+
 
             <androidx.core.widget.ContentLoadingProgressBar
                 android:id="@+id/appointmentImageViewLoadingProgressBar"
@@ -67,6 +68,21 @@
                 tools:text="APP DATE" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appointmentLocationTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/app_date_horizontal_margin"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/blue_10"
+                android:textSize="@dimen/application_text_size_l"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/appointmentDateTextView"
+
+                tools:text="APP LOCATION" />
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/appointmentTimeTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -87,7 +103,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/blue_20"
-                android:textSize="@dimen/application_text_size_s"
+                android:textSize="@dimen/application_text_size_m"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@id/appointmentDateTextView"
                 app:layout_constraintTop_toBottomOf="@+id/appointmentTimeTextView"
@@ -96,15 +112,15 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/deleteAppointmentButton"
                 style="@style/Widget.Material3.Button.Icon"
-                android:backgroundTint="@color/orange_40"
                 android:layout_width="@dimen/gen_button_width"
                 android:layout_height="@dimen/gen_button_height"
                 android:layout_margin="@dimen/gen_button_horizontal_margin"
+                android:backgroundTint="@color/orange_40"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:textSize="@dimen/application_text_size_s"
                 app:cornerRadius="@dimen/corner_radius"
                 app:icon="@drawable/ic_baseline_delete_24"
-                android:textSize="@dimen/application_text_size_s"
                 app:iconGravity="textEnd"
                 app:iconSize="@dimen/icon_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -113,15 +129,15 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/editAppointmentButton"
                 style="@style/Widget.Material3.Button.Icon"
-                android:backgroundTint="@color/blue_40"
                 android:layout_width="@dimen/gen_button_width"
                 android:layout_height="@dimen/gen_button_height"
                 android:layout_margin="@dimen/gen_button_horizontal_margin"
-                app:icon="@drawable/ic_baseline_edit_24"
+                android:backgroundTint="@color/blue_40"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                app:cornerRadius="@dimen/corner_radius"
                 android:textSize="@dimen/application_text_size_s"
+                app:cornerRadius="@dimen/corner_radius"
+                app:icon="@drawable/ic_baseline_edit_24"
                 app:iconGravity="textEnd"
                 app:iconSize="@dimen/icon_size"
                 app:layout_constraintBottom_toBottomOf="parent"

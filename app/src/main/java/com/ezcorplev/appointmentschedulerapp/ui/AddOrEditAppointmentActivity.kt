@@ -3,8 +3,12 @@ package com.ezcorplev.appointmentschedulerapp.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.ezcorplev.appointmentschedulerapp.R
 import com.ezcorplev.appointmentschedulerapp.databinding.ActivityAddOrEditAppointmentBinding
 import com.ezcorplev.appointmentschedulerapp.models.Appointment
 import com.ezcorplev.appointmentschedulerapp.viewmodels.AddOrEditAppointmentViewModel
@@ -32,6 +36,7 @@ class AddOrEditAppointmentActivity() : AppCompatActivity() {
 
         val datePicker = binding.appointmentDateDP
         var dateString = ""
+        var appointmentLocation = ""
 
         datePicker.init(datePicker.year, datePicker.month, datePicker.dayOfMonth) { view, year, monthOfYear, dayOfMonth ->
             // Extract the year, month, and day from the DatePicker
@@ -49,6 +54,27 @@ class AddOrEditAppointmentActivity() : AppCompatActivity() {
         val timeString = String.format("%02d:%02d %s", hour, minute, amPm) // converts the hour, minute, and amPm values into a string in the format "hh:mm AM/PM"
 
 
+        val locationSpinner = binding.appointmentLocationSpinner
+        val adapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
+            this,
+            R.array.locations,
+            android.R.layout.simple_spinner_item
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        locationSpinner.adapter = adapter
+
+        locationSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedLocation = parent?.getItemAtPosition(position).toString()
+                // update the location property of the appointment object
+                appointmentLocation = selectedLocation.toString()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // do nothing
+            }
+        }
+
         binding.confirmAppointmentBtn.setOnClickListener {
 
             val appointmentDesc = binding.AppointmentDescriptionET.text.toString()
@@ -59,6 +85,7 @@ class AddOrEditAppointmentActivity() : AppCompatActivity() {
                     id = appointmentId,
                     date = dateString,
                     time = timeString,
+                    location = appointmentLocation,
                     description = appointmentDesc,
                 )
 
@@ -66,6 +93,7 @@ class AddOrEditAppointmentActivity() : AppCompatActivity() {
                     appointment.id,
                     appointment.date,
                     appointment.time,
+                    appointment.location,
                     appointment.description
                 )
             }

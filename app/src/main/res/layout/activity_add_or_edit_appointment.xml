@@ -54,6 +54,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/appointmentDateDP" />
 
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/appointmentLocationSpinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/blue_20"
+                android:textSize="@dimen/application_text_size_l"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appointmentTimeTP"
+                tools:text="APP LOCATION" />
+
 
             <EditText
                 android:id="@+id/AppointmentDescriptionET"
@@ -63,9 +76,10 @@
                 android:layout_marginVertical="@dimen/app_date_horizontal_margin"
                 android:hint="@string/appointment_desc_hint"
                 android:inputType="text"
+                android:textSize="@dimen/application_text_size_l"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/appointmentTimeTP" />
+                app:layout_constraintTop_toBottomOf="@id/appointmentLocationSpinner" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -11,6 +11,7 @@ class Appointment(
     val id: Long,
     val date: String,
     val time: String,
+    val location: String,
 //    val location: AppointmentLocationMap,
     val description: String
 ): Parcelable {

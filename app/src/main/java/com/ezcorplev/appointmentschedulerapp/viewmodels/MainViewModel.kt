@@ -24,12 +24,6 @@ class MainViewModel @Inject constructor(
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-
-//            val appointment1 = Appointment(111L, "23/2/23", "16:00", "App Desc")
-//            val appointment2 = Appointment(112L, "23/2/23", "16:00", "App Desc2")
-//
-//            appointmentRepo.addAppointment(appointment1)
-//            appointmentRepo.addAppointment(appointment2)
 //            appointments = appointmentRepo.getAppointments()
         }
     }

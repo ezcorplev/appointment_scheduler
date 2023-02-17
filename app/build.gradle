@@ -70,6 +70,10 @@ dependencies {
     def shimmer_version = "0.5.0"
     implementation "com.facebook.shimmer:shimmer:$shimmer_version"
 
+    // CircleImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'

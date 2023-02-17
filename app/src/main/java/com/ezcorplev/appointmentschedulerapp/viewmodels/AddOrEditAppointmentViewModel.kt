@@ -15,11 +15,11 @@ class AddOrEditAppointmentViewModel @Inject constructor(
     private val appointmentRepo: AppointmentRepo
 ): ViewModel() {
 
-    fun addOrEditAppointment(id: Long, date: String, time: String, desc: String) {
+    fun addOrEditAppointment(id: Long, date: String, time: String,location: String, desc: String) {
 
         viewModelScope.launch(Dispatchers.IO) {
 
-            val appointment = Appointment(id, date, time, desc)
+            val appointment = Appointment(id, date, time, location, desc)
 
             appointmentRepo.addAppointment(appointment)
         }

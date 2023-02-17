@@ -5,6 +5,14 @@
     <string name="edit_your_meeting">Edit Your Meeting</string>
     <string name="appointment_desc_hint">Enter your appointment description here...</string>
     <string name="confirm_appointment">Confirm Appointment</string>
+    <string-array name="locations">
+        <item>Dallas</item>
+        <item>Memphis</item>
+        <item>Orlando</item>
+        <item>Park City</item>
+        <item>San Fransisco</item>
+        <item>St. George</item>
+    </string-array>
 
 
 </resources>

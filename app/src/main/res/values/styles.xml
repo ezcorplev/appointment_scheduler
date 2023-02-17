@@ -8,4 +8,8 @@
     <style name="ContentLoadingProgress">
         <item name="android:colorAccent">@color/blue_20</item>
     </style>
+
+    <style name="ShapeAppearanceOverlay.App.Circle" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

@@ -1,5 +1,6 @@
 package com.ezcorplev.appointmentschedulerapp
 
+import android.widget.ArrayAdapter
 import android.widget.Button
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
@@ -8,6 +9,7 @@ import coil.load
 import com.ezcorplev.appointmentschedulerapp.databinding.EpoxyModelAppointmentItemBinding
 import com.ezcorplev.appointmentschedulerapp.epoxy.ViewBindingKotlinModel
 import com.ezcorplev.appointmentschedulerapp.models.Appointment
+import com.ezcorplev.appointmentschedulerapp.ui.MainActivity
 
 interface OnAppointmentItemClicked {
     fun onEditClicked(appointment: Appointment)
@@ -41,21 +43,28 @@ data class AppointmentEpoxyModel(val appointment: Appointment?, val clickListene
             deleteAppointmentButton.setOnClickListener {
                 clickListener?.onDeleteClicked(appointment)
             }
-//            appointmentDateTextView.text = appointment.location
 
-            // Handles progressBar and image loading
-            // val appointmentImage = when (Appointment.location) {
-            // is enum1 -> R.Drawable.imageSF
-            // is enum2 -> R.Drawable.imageSG
-            // else -> R.Drawable.someImage
-            // }
 
-//            appointmentImageViewLoadingProgressBar.isVisible = true // learn about disk strategy (caching for images)
-//            appointmentImageView.load(appointment.image) {
-//                listener { request, result ->
-//                    appointmentImageViewLoadingProgressBar.isGone = true
-//                }
-//            }
+            appointmentLocationTextView.text = appointment.location
+
+//             Handles progressBar and image loading
+             val appointmentImage = when (appointment.location) {
+             "Dallas" -> R.raw.dallas
+             "Memphis" -> R.raw.memphis
+             "Orlando" -> R.raw.orlando
+             "Park City" -> R.raw.parkcity
+             "San Fransisco" -> R.raw.sf
+             "St. George" -> R.raw.stgeorge
+
+             else -> R.raw.dallas
+             }
+
+            appointmentImageViewLoadingProgressBar.isVisible = true // learn about disk strategy (caching for images)
+            appointmentImageView.load(appointmentImage) {
+                listener { request, result ->
+                    appointmentImageViewLoadingProgressBar.isGone = true
+                }
+            }
 
         }
 //            ?: shimmerLayout.startShimmer() // if product is null, start shimmer

@@ -8,8 +8,10 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import coil.load
 import com.ezcorplev.appointmentschedulerapp.AppointmentEpoxyController
 import com.ezcorplev.appointmentschedulerapp.OnAppointmentItemClicked
+import com.ezcorplev.appointmentschedulerapp.R
 import com.ezcorplev.appointmentschedulerapp.databinding.ActivityMainBinding
 import com.ezcorplev.appointmentschedulerapp.models.Appointment
 import com.ezcorplev.appointmentschedulerapp.ui.Consts.APPOINTMENT_BUNDLE
@@ -29,12 +31,12 @@ import dagger.hilt.android.AndroidEntryPoint
 // -> onSwipe/onClick -> delete appointment?
 //I would like the user interface to be simple yet elegant (i.e., has some quick, light styling)
 //Submit a link to a Github repo with your solution.
-// display List<Appointment>> on epoxy
-// add images for locations (svg / png)
-// setup onClick addAppointment
-// create activity screen for addOrEditAppointment
-// setup onClick deleteAppointment
-// setup onClick editAppointment
+// display List<Appointment>> on epoxy - done
+// add images for locations (svg / png) -
+// setup onClick addAppointment - done
+// create activity screen for addOrEditAppointment - done, only addAppointment for now
+// setup onClick deleteAppointment - done
+// setup onClick editAppointment -
 //
 
 
@@ -51,10 +53,17 @@ class MainActivity : AppCompatActivity(), OnAppointmentItemClicked {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initUserImageAndText()
         initClickListeners()
         initEpoxy()
         initObservers()
 
+    }
+
+    private fun initUserImageAndText() {
+        val sampleText = "Welcome back user, here are your appointments..."
+        binding.userImageView.load(R.raw.user_pic)
+        binding.userTextView.text = sampleText
     }
 
     private fun initEpoxy() {
