@@ -11,26 +11,20 @@ import com.ezcorplev.appointmentschedulerapp.epoxy.ViewBindingKotlinModel
 import com.ezcorplev.appointmentschedulerapp.models.Appointment
 import com.ezcorplev.appointmentschedulerapp.ui.MainActivity
 
-interface OnAppointmentItemClicked {
-    fun onEditClicked(appointment: Appointment)
-    fun onDeleteClicked(appointment: Appointment)
-}
+//interface OnAppointmentItemClicked {
+//    fun onEditClicked(appointment: Appointment)
+//    fun onDeleteClicked(appointment: Appointment)
+//}
 
 data class AppointmentEpoxyModel(val appointment: Appointment?, val clickListener: OnAppointmentItemClicked?):
 
     ViewBindingKotlinModel<EpoxyModelAppointmentItemBinding>(R.layout.epoxy_model_appointment_item) {
 
-//    val deleteButton: Button by bind(R.id.deleteAppointmentButton)
-
     override fun EpoxyModelAppointmentItemBinding.bind() {
 
-//        shimmerLayout.isVisible = product == null // if product is null, show shimmer layout
-//        cardView.isInvisible = appointment == null // if product is null, hide product card view
-
         appointment?.let { appointment ->
-//            shimmerLayout.stopShimmer() // once product loads, stop shimmer and load product ->
 
-            // Sets product text attributes
+            // Sets appointment text attributes
 
             appointmentDateTextView.text = appointment.date
             appointmentTimeTextView.text = appointment.time
@@ -58,13 +52,6 @@ data class AppointmentEpoxyModel(val appointment: Appointment?, val clickListene
 
              else -> R.raw.dallas
              }
-
-            appointmentImageViewLoadingProgressBar.isVisible = true // learn about disk strategy (caching for images)
-            appointmentImageView.load(appointmentImage) {
-                listener { request, result ->
-                    appointmentImageViewLoadingProgressBar.isGone = true
-                }
-            }
 
         }
 //            ?: shimmerLayout.startShimmer() // if product is null, start shimmer

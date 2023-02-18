@@ -7,22 +7,23 @@
     tools:context=".ui.MainActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/userImageView"
+        android:id="@+id/user_image_view"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="@dimen/user_image_height"
         android:background="@color/blue_90"
         android:src="@raw/user_pic"
         app:civ_border_color="@color/white"
         app:civ_border_width="5dp"
+        android:paddingVertical="5dp"
         app:civ_circle_background_color="@color/blue_90"
-        app:layout_constraintBottom_toTopOf="@+id/epoxyRecyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/appointment_recycler_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/user_text_view" />
 
     <TextView
-        android:id="@+id/userTextView"
+        android:id="@+id/user_text_view"
         android:maxLines="2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,18 +36,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:hint="Welcome back user, here are your appointments..." />
+        android:text="@string/user_welcome_text" />
 
-
-    <com.airbnb.epoxy.EpoxyRecyclerView
-        android:id="@+id/epoxyRecyclerView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/appointment_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/userImageView"
+        app:layout_constraintTop_toBottomOf="@id/user_image_view"
         tools:itemCount="7"
         tools:listitem="@layout/epoxy_model_appointment_item" />
 

@@ -39,19 +39,6 @@
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerRound"
                 tools:src="@raw/sf" />
 
-
-            <androidx.core.widget.ContentLoadingProgressBar
-                android:id="@+id/appointmentImageViewLoadingProgressBar"
-                style="?android:attr/progressBarStyleSmall"
-                android:layout_width="@dimen/loading_bar_dimen"
-                android:layout_height="@dimen/loading_bar_dimen"
-                android:indeterminateOnly="true"
-                android:theme="@style/ContentLoadingProgress"
-                app:layout_constraintBottom_toBottomOf="@+id/appointmentImageView"
-                app:layout_constraintEnd_toEndOf="@+id/appointmentImageView"
-                app:layout_constraintStart_toStartOf="@+id/appointmentImageView"
-                app:layout_constraintTop_toTopOf="@+id/appointmentImageView" />
-
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/appointmentDateTextView"
                 android:layout_width="0dp"

@@ -1,4 +1,4 @@
-package com.ezcorplev.appointmentschedulerapp.ui
+package com.ezcorplev.appointmentschedulerapp.utils
 
 object Consts {
 

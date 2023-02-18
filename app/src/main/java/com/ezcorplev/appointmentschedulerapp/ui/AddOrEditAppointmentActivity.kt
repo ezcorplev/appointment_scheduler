@@ -1,18 +1,16 @@
 package com.ezcorplev.appointmentschedulerapp.ui
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.ezcorplev.appointmentschedulerapp.R
 import com.ezcorplev.appointmentschedulerapp.databinding.ActivityAddOrEditAppointmentBinding
 import com.ezcorplev.appointmentschedulerapp.enums.State
 import com.ezcorplev.appointmentschedulerapp.models.Appointment
-import com.ezcorplev.appointmentschedulerapp.ui.Consts.APPOINTMENT_BUNDLE
+import com.ezcorplev.appointmentschedulerapp.utils.Consts.APPOINTMENT_BUNDLE
 import com.ezcorplev.appointmentschedulerapp.viewmodels.AddOrEditAppointmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

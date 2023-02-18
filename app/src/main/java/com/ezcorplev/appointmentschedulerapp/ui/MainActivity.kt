@@ -7,14 +7,14 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
-import com.ezcorplev.appointmentschedulerapp.AppointmentEpoxyController
+import com.ezcorplev.appointmentschedulerapp.AppointmentAdapter
 import com.ezcorplev.appointmentschedulerapp.OnAppointmentItemClicked
 import com.ezcorplev.appointmentschedulerapp.R
 import com.ezcorplev.appointmentschedulerapp.databinding.ActivityMainBinding
 import com.ezcorplev.appointmentschedulerapp.models.Appointment
-import com.ezcorplev.appointmentschedulerapp.ui.Consts.APPOINTMENT_BUNDLE
+import com.ezcorplev.appointmentschedulerapp.utils.Consts.APPOINTMENT_BUNDLE
 import com.ezcorplev.appointmentschedulerapp.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,38 +47,41 @@ class MainActivity : AppCompatActivity(), OnAppointmentItemClicked {
 
     private val mainViewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
-    private val controller = AppointmentEpoxyController()
+    private lateinit var adapter: AppointmentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initUserImageAndText()
-        initClickListeners()
-        initEpoxy()
         initObservers()
+        initRecyclerView()
+        initUserImage()
+        initClickListeners()
     }
 
-    private fun initUserImageAndText() {
-        val sampleText = "Welcome back user, here are your appointments..."
+    private fun initRecyclerView() {
+        val recyclerView = binding.appointmentRecyclerView
+        adapter = AppointmentAdapter(this)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+
+    }
+
+    private fun initUserImage() {
         binding.userImageView.load(R.raw.user_pic)
-        binding.userTextView.text = sampleText
-    }
-
-    private fun initEpoxy() {
-        binding.epoxyRecyclerView.setController(controller)
     }
 
     private fun initObservers() {
         mainViewModel.appointments.observe(this) { appointments ->
-            val appointmentsPair =
-                mutableListOf<Pair<Appointment, OnAppointmentItemClicked>>()
-            appointments.forEach { appointment ->
-                appointmentsPair.add(Pair(appointment, this@MainActivity))
-            }
-            controller.setData(appointmentsPair)
-            Log.d("bla", appointments.toString())
+            adapter.submitList(appointments)
+//            val appointmentsPair =
+//                mutableListOf<Pair<Appointment, OnAppointmentItemClicked>>()
+//            appointments.forEach { appointment ->
+//                appointmentsPair.add(Pair(appointment, this@MainActivity))
+//            }
+//            controller.setData(appointmentsPair)
+//            Log.d("bla", appointments.toString())
         }
 
         mainViewModel.stateLiveData.observe(this) {

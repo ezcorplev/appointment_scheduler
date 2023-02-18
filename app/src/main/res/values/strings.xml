@@ -5,6 +5,7 @@
     <string name="edit_your_meeting">Edit Your Meeting</string>
     <string name="appointment_desc_hint">Enter your appointment description here...</string>
     <string name="confirm_appointment">Confirm Appointment</string>
+    <string name="user_welcome_text">Welcome back user, here are your appointments...</string>
     <string-array name="locations">
         <item>Dallas</item>
         <item>Memphis</item>

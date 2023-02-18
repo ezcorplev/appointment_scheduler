@@ -17,5 +17,6 @@
     <dimen name="fav_button_margin">6dp</dimen>
     <dimen name="icon_size">18dp</dimen>
     <dimen name="gen_button_height">34dp</dimen>
+    <dimen name="user_image_height">120dp</dimen>
 
 </resources>
