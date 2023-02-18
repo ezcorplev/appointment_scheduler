@@ -43,10 +43,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), OnAppointmentItemClicked {
 
+    private val TAG = this::class.java.simpleName
+
     private val mainViewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
     private val controller = AppointmentEpoxyController()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +58,6 @@ class MainActivity : AppCompatActivity(), OnAppointmentItemClicked {
         initClickListeners()
         initEpoxy()
         initObservers()
-
     }
 
     private fun initUserImageAndText() {
@@ -71,58 +71,45 @@ class MainActivity : AppCompatActivity(), OnAppointmentItemClicked {
     }
 
     private fun initObservers() {
-
-        lifecycleScope.launchWhenStarted {
-            mainViewModel.appointments.collect { appointments ->
-                val appointmentsPair =
-                    mutableListOf<Pair<Appointment, OnAppointmentItemClicked>>()
-                appointments.forEach { appointment ->
-                    appointmentsPair.add(Pair(appointment, this@MainActivity))
-                }
-                controller.setData(appointmentsPair)
-                Log.d("bla", appointments.toString())
+        mainViewModel.appointments.observe(this) { appointments ->
+            val appointmentsPair =
+                mutableListOf<Pair<Appointment, OnAppointmentItemClicked>>()
+            appointments.forEach { appointment ->
+                appointmentsPair.add(Pair(appointment, this@MainActivity))
             }
+            controller.setData(appointmentsPair)
+            Log.d("bla", appointments.toString())
         }
 
-        mainViewModel.onAppointmentDeleted.observe(this) {
+        mainViewModel.stateLiveData.observe(this) {
             // toast
             Toast.makeText(this, "Appointment Deleted!", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun initClickListeners() {
-
         binding.addAppointmentFloatingButton.setOnClickListener {
             val intent = Intent(this, AddOrEditAppointmentActivity::class.java)
-//            intent.putExtra<Appointment?>(APPOINTMENT_BUNDLE, null) // const file TAG
             startActivity(intent)
         }
-
-    }
-
-    companion object {
-        private val TAG = "${this::class.java.simpleName}TAG"
     }
 
     override fun onEditClicked(appointment: Appointment) {
         Log.d(TAG, "onEditClicked - $appointment")
-        // intent -> addOrEdit putExtra Appointment
+        val intent = Intent(this, AddOrEditAppointmentActivity::class.java)
+        intent.putExtra(APPOINTMENT_BUNDLE, appointment)
+        startActivity(intent)
     }
 
     override fun onDeleteClicked(appointment: Appointment) {
-        Log.d(TAG, "onDeleteClicked - $appointment")
+        Log.d(TAG, "Appointment deletion initiated - $appointment")
 
-        // dialog box before deleting
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage("Are you sure you want to delete this appointment?")
-        builder.setPositiveButton("Yes") { dialog, which ->
-            // Delete the item
-            mainViewModel.deleteAppointment(appointment)
-        }
-        builder.setNegativeButton("No") { dialog, which ->
-            // Do nothing
-        }
-        builder.show()
+        // Alert dialog before deleting
+        AlertDialog.Builder(this)
+            .setMessage("Are you sure you want to delete this appointment?")
+            .setPositiveButton("Yes") { _, _ ->
+                // Delete the item
+                mainViewModel.deleteAppointment(appointment)
+            }.setNegativeButton("No", null).show()
     }
-
 }

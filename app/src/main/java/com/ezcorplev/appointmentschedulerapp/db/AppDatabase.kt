@@ -9,5 +9,4 @@ import com.ezcorplev.appointmentschedulerapp.models.Appointment
  ], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun appointmentDao(): AppointmentDao
-
 }

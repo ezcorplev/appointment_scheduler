@@ -15,20 +15,13 @@ class AppointmentRepoImpl(
     private val db: AppDatabase
 ): AppointmentRepo {
 
-    init {
-
-    }
-
     override suspend fun addAppointment(appointment: Appointment) {
-        val a = db.appointmentDao().addAppointment(appointment)
-        Log.d("INSERT", "addAppointment: $a") // logging to check appointment added
+        db.appointmentDao().addAppointment(appointment)
     }
 
     override suspend fun deleteAppointment(appointment: Appointment) {
         db.appointmentDao().deleteAppointment(appointment)
     }
 
-    override fun getAppointments(): Flow<List<Appointment>> {
-        return db.appointmentDao().getAppointments()
-    }
+    override fun getAppointments(): Flow<List<Appointment>> = db.appointmentDao().getAllAppointments()
 }

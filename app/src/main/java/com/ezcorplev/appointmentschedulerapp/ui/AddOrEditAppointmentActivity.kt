@@ -10,7 +10,9 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.ezcorplev.appointmentschedulerapp.R
 import com.ezcorplev.appointmentschedulerapp.databinding.ActivityAddOrEditAppointmentBinding
+import com.ezcorplev.appointmentschedulerapp.enums.State
 import com.ezcorplev.appointmentschedulerapp.models.Appointment
+import com.ezcorplev.appointmentschedulerapp.ui.Consts.APPOINTMENT_BUNDLE
 import com.ezcorplev.appointmentschedulerapp.viewmodels.AddOrEditAppointmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,15 +28,32 @@ class AddOrEditAppointmentActivity() : AppCompatActivity() {
         binding = ActivityAddOrEditAppointmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initClickListeners()
+        val appointment = intent?.getSerializableExtra(APPOINTMENT_BUNDLE) as? Appointment
 
+        initClickListeners()
+        setupObservers()
+//        appointment?.let {
+//            fillFields(appointment)
+//        }
+
+    }
+
+    private fun setupObservers() {
+        addOrEditAppointmentViewModel.stateLiveData.observe(this) {
+            when (it) {
+                State.LOADING -> {}// Show progress bar
+                State.ADDED,
+                State.EDITED -> finish()
+                else -> {} // Do nothing for now
+            }
+        }
     }
 
     private fun initClickListeners() {
 
         val appointmentId = System.currentTimeMillis()
 
-        val datePicker = binding.appointmentDateDP
+        val datePicker = binding.appointmentDateDp
         var dateString = ""
         var appointmentLocation = ""
 
@@ -76,30 +95,16 @@ class AddOrEditAppointmentActivity() : AppCompatActivity() {
         }
 
         binding.confirmAppointmentBtn.setOnClickListener {
-
             val appointmentDesc = binding.AppointmentDescriptionET.text.toString()
+            val appointment = Appointment(
+                id = appointmentId,
+                date = dateString,
+                time = timeString,
+                location = appointmentLocation,
+                description = appointmentDesc,
+            )
 
-            lifecycleScope.launchWhenStarted {
-
-                val appointment = Appointment(
-                    id = appointmentId,
-                    date = dateString,
-                    time = timeString,
-                    location = appointmentLocation,
-                    description = appointmentDesc,
-                )
-
-                addOrEditAppointmentViewModel.addOrEditAppointment(
-                    appointment.id,
-                    appointment.date,
-                    appointment.time,
-                    appointment.location,
-                    appointment.description
-                )
-            }
-
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            addOrEditAppointmentViewModel.addOrEditAppointment(appointment)
         }
     }
 
