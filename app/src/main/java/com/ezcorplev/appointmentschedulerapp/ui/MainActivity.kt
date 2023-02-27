@@ -13,6 +13,7 @@ import com.ezcorplev.appointmentschedulerapp.AppointmentAdapter
 import com.ezcorplev.appointmentschedulerapp.OnAppointmentItemClicked
 import com.ezcorplev.appointmentschedulerapp.R
 import com.ezcorplev.appointmentschedulerapp.databinding.ActivityMainBinding
+import com.ezcorplev.appointmentschedulerapp.enums.State
 import com.ezcorplev.appointmentschedulerapp.models.Appointment
 import com.ezcorplev.appointmentschedulerapp.utils.Consts.APPOINTMENT_BUNDLE
 import com.ezcorplev.appointmentschedulerapp.viewmodels.MainViewModel
@@ -47,7 +48,6 @@ class MainActivity : AppCompatActivity(), OnAppointmentItemClicked {
 
     private val mainViewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
-    private lateinit var adapter: AppointmentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,11 +61,7 @@ class MainActivity : AppCompatActivity(), OnAppointmentItemClicked {
     }
 
     private fun initRecyclerView() {
-        val recyclerView = binding.appointmentRecyclerView
-        adapter = AppointmentAdapter(this)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
-
+        binding.appointmentRecyclerView.adapter = AppointmentAdapter(this@MainActivity)
     }
 
     private fun initUserImage() {
@@ -74,19 +70,15 @@ class MainActivity : AppCompatActivity(), OnAppointmentItemClicked {
 
     private fun initObservers() {
         mainViewModel.appointments.observe(this) { appointments ->
-            adapter.submitList(appointments)
-//            val appointmentsPair =
-//                mutableListOf<Pair<Appointment, OnAppointmentItemClicked>>()
-//            appointments.forEach { appointment ->
-//                appointmentsPair.add(Pair(appointment, this@MainActivity))
-//            }
-//            controller.setData(appointmentsPair)
-//            Log.d("bla", appointments.toString())
+            (binding.appointmentRecyclerView.adapter as? AppointmentAdapter)?.submitList(appointments)
         }
 
         mainViewModel.stateLiveData.observe(this) {
-            // toast
-            Toast.makeText(this, "Appointment Deleted!", Toast.LENGTH_SHORT).show()
+            // toast when appointment is deleted
+            // Add docs to other states. for example -> if state = LOADING, display a progress bar
+            if (it == State.DELETED) {
+                Toast.makeText(this, "Appointment Deleted!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

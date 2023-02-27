@@ -85,7 +85,6 @@
 
     </androidx.core.widget.NestedScrollView>
 
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/confirm_appointment_btn"
         android:text="@string/confirm_appointment"
@@ -101,8 +100,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:iconGravity="textStart"
         app:iconSize="@dimen/icon_size"/>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,10 +30,7 @@ class AppointmentAdapter(private val clickListener: OnAppointmentItemClicked?) :
             oldItem == newItem
 
         override fun areContentsTheSame(oldItem: Appointment, newItem: Appointment): Boolean =
-            oldItem.date == newItem.date &&
-            oldItem.location == newItem.location &&
-            oldItem.time == newItem.time &&
-            oldItem.description == newItem.description
+            oldItem.id == newItem.id
     }
 
     class AppointmentViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -45,27 +42,27 @@ class AppointmentAdapter(private val clickListener: OnAppointmentItemClicked?) :
             val appointmentDesc: AppCompatTextView = itemView.findViewById(R.id.appointmentDescTextView)
             val appointmentEditButton: AppCompatButton = itemView.findViewById(R.id.editAppointmentButton)
             val appointmentImage: AppCompatImageView = itemView.findViewById(R.id.appointmentImageView)
+            val appointmentDeleteButton: AppCompatButton = itemView.findViewById(R.id.deleteAppointmentButton)
 
-            appointmentDate.text = appointment.date
-            appointmentTime.text = appointment.time
+            appointmentDate.text = appointment.date.toString()
+            appointmentTime.text = appointment.time.toString()
             appointmentDesc.text = appointment.description
-            appointmentLocation.text = appointment.location
+            appointmentLocation.text = appointment.location.toString()
 
 //             Handles and image loading
-            appointmentImage.load(when (appointment.location) {
-                "Dallas" -> R.raw.dallas
-                "Memphis" -> R.raw.memphis
-                "Orlando" -> R.raw.orlando
-                "Park City" -> R.raw.parkcity
-                "San Fransisco" -> R.raw.sf
-                "St. George" -> R.raw.stgeorge
-                else -> R.raw.dallas
+            appointmentImage.load(when (appointment.location.locationRes) {
+                0 -> R.drawable.dallas
+                1 -> R.drawable.memphis
+                2 -> R.drawable.orlando
+                3 -> R.drawable.parkcity
+                4 -> R.drawable.sf
+                5 -> R.drawable.stgeorge
+                else -> R.drawable.dallas
             })
 
             appointmentEditButton.setOnClickListener {
                 clickListener?.onEditClicked(appointment)
             }
-            val appointmentDeleteButton: AppCompatButton = itemView.findViewById(R.id.deleteAppointmentButton)
             appointmentDeleteButton.setOnClickListener {
                 clickListener?.onDeleteClicked(appointment)
             }

@@ -20,7 +20,6 @@ class AddOrEditAppointmentViewModel @Inject constructor(
     val stateLiveData = MutableLiveData(State.IDLE)
 
     fun addOrEditAppointment(appointment: Appointment) {
-
         viewModelScope.launch(Dispatchers.IO) {
             stateLiveData.postValue(State.LOADING)
             appointmentRepo.addAppointment(appointment)

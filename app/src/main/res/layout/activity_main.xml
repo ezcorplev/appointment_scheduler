@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/user_image_height"
         android:background="@color/blue_90"
-        android:src="@raw/user_pic"
+        android:src="@drawable/user_pic"
         app:civ_border_color="@color/white"
         app:civ_border_width="5dp"
         android:paddingVertical="5dp"
@@ -47,6 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/user_image_view"
         tools:itemCount="7"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/epoxy_model_appointment_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
